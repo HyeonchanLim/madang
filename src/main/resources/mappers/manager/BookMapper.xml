@@ -4,42 +4,52 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.green.madang.manager.book.BookMapper">
+
     <insert id="insBook">
         INSERT INTO book
-        SET bookName = #{bookName}
+        SET bookname = #{bookName}
         , publisher = #{publisher}
         , price = #{price}
     </insert>
 
     <select id="selBookList">
-        SELECT bookid AS bookId , bookname AS bookName , publisher , price
+        SELECT bookid AS bookId
+        , bookname AS bookName
+        , publisher
+        , price
         FROM book
-        <if test="searchText != null and searchText !='' ">
-            WHERE bookName LIKE '%${searchText}%'
+        <if test=" searchText != null and searchText != '' ">
+            WHERE bookname LIKE '%${searchText}%'
         </if>
         ORDER BY bookname, bookid
         LIMIT #{startIdx}, #{size}
     </select>
-    <!-- LIMIT ${(page-1)*size},#{size} 이거랑 같음 -->
-    <!-- '%${searchText}% 여기서 $ 를 안쓰면 '%'sss'%' 이렇게 안에 ' 홀 따옴표가 찍힘
-    이걸 막기 위해서 $를 붙여준다 -->
+    <!--
+        LIMIT #{startIdx}, #{size}
+        or
+        LIMIT ${(page - 1) * size}, #{size}
+    -->
+
     <update id="updBook">
         UPDATE book
         <set>
-            <if test="bookName != null and bookName!='' ">
+            <if test="bookName != null and bookName != ''">
                 bookname = #{bookName}
             </if>
-            <if test="publisher != null and publisher!='' ">
+            <if test="publisher != null and publisher != ''">
                 , publisher = #{publisher}
             </if>
-            <if test="price >= 0 and price != null">
+            <if test="price != null and price >= 0">
                 , price = #{price}
             </if>
         </set>
         WHERE bookid = #{bookId}
     </update>
+
     <delete id="delBook">
         DELETE FROM book
-        WHERE bookid = #{bookId} AND publisher = #{publisher}
+        WHERE bookid = #{bookId}
     </delete>
+
+
 </mapper>

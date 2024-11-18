@@ -11,21 +11,26 @@ import java.util.List;
 public class BookService {
     private final BookMapper mapper;
 
-    public int insBook(BookPostReq p) {
+    public int postBook(BookPostReq p) {
         return mapper.insBook(p);
     }
 
-    public List<BookGetRes> selBookList(BookGetReq p){
-        //sIdx 값 세팅
-        p.setStartIdx((p.getPage()-1)*p.getSize());
+    public List<BookGetRes> getBookList(BookGetReq p) {
+        // sIdx값 세팅
+        int page = p.getPage();
+        int size = p.getSize();
+        int sIdx = (page - 1) * size;
+        p.setStartIdx(sIdx);
+
+        //p.setSIdx((p.getPage() - 1) * p.getSize());
         return mapper.selBookList(p);
     }
 
-    public int updBook(BookPutReq p) {
+    public int putBook(BookPutReq p) {
         return mapper.updBook(p);
     }
 
-    public int delBook(BookDelReq p){
+    public int deleteBook(BookDeleteReq p) {
         return mapper.delBook(p);
     }
 }

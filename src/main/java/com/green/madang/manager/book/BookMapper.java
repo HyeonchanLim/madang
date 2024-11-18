@@ -10,5 +10,5 @@ public interface BookMapper {
     int insBook(BookPostReq p);
     List<BookGetRes> selBookList(BookGetReq p);
     int updBook(BookPutReq p);
-    int delBook(BookDelReq p);
+    int delBook(BookDeleteReq p);
 }
