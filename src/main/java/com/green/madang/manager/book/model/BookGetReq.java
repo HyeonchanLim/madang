@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BookGetReq {
-    @Schema(description = "선택된 페이지값", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+
     private int page;
     @Schema(description = "한 페이지마다 보여질 아이템 수", example = "30", requiredMode = Schema.RequiredMode.REQUIRED)
     private int size;

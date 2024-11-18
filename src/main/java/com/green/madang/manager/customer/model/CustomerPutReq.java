@@ -8,6 +8,9 @@ import lombok.Setter;
 @Setter
 public class CustomerPutReq {
     @Schema(title = "고객ID", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
+    // requiredMode = Schema.RequiredMode.REQUIRED 이 값은 해당 필드가 반드시 제공되어야 함을 의미
+    // 만약 custid 가 없이 호출되면 요청이 유효하지 않아 에러가 발생한다
+    // Schema.RequiredMode.NOT_REQUIRED 를 작성하면 제공하지 않아도 요청이 유효하게 처리되지만 쓰지는 않는다.
     private int custId;
     @Schema(title = "고객 이름", example = "홍길동")
     private String name;
