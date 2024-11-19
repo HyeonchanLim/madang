@@ -74,6 +74,7 @@ public class CustomerController {
     }
 
     @DeleteMapping
+    @Operation(summary = "고객 명단 삭제", description = "고객 명단 삭제 api")
     // @RequestParam(value = "cust_id") 안적더라도 뒤에 int 라서 자동 삽입
     // primiteve , string 타입은 param 사용
     // 나머지 레퍼런스들은 전부 requestbody , modelattribute 사용
